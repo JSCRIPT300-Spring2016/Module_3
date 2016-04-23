@@ -1,5 +1,3 @@
-// use the underscore module to filter the following data
-
 var foodTrucks = [
   {
     name: '314 PIE',
@@ -59,12 +57,14 @@ var foodTrucks = [
   {
     name: 'BeezNeez Gourmet Sausages',
     type: 'Hot Dogs',
-    schedule: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+        'Sunday']
   },
   {
     name: 'Beloved Mexico',
     type: 'Mexican',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+        'Saturday', 'Sunday']
   },
   {
     name: 'Ben & Jerry\'s',
@@ -79,7 +79,8 @@ var foodTrucks = [
   {
     name: 'Big Dog\'s',
     type: 'Hot Dogs',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+        'Saturday', 'Sunday']
   },
   {
     name: 'Big Ed\'s Good Eats',
@@ -234,7 +235,8 @@ var foodTrucks = [
   {
     name: 'Dog Japon',
     type: 'Hot Dogs',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+        'Saturday', 'Sunday']
   },
   {
     name: 'Dogfather Catering',
@@ -248,9 +250,27 @@ var foodTrucks = [
   }
 ];
 
-/* 
- * return an object from the module with a single method on it: filterByDay
- * that method should take a single parameter that represents the day to filter on
- * use the built-in filter() method to return all trucks that have the day in their
- * schedule
- */
+function filterTrucksByDay( day ) {
+
+  var trucks;
+
+  function getTruck( obj ) {
+
+    if ( obj.schedule && obj.schedule.indexOf( day ) > -1 ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  trucks = foodTrucks.filter( getTruck );
+
+  return trucks;
+}
+
+var truckInfo = {
+  foodTrucks : foodTrucks,
+  filterTrucksByDay : filterTrucksByDay
+};
+
+module.exports = truckInfo;

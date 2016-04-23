@@ -1,14 +1,25 @@
+var dateTools = require( './enhanced-date.js' );
+var truckInfo = require( './trucks.js' );
+var http = require( 'http' );
 
-// make this a simple http server that writes to the response stream object
+http.createServer( function( request , response ) {
 
-// the page should display the following message:
+  var day = dateTools.getDayName();
+  var month = dateTools.getMonthName();
+  var date = new Date().getDate().toString();
+  var truckList = truckInfo.filterTrucksByDay( day );
+  var truckString = 'Today is ' + day + ', ' + month + ' ' + date +
+    '. The food trucks available are :\n';
+  var i = 0;
 
-// Today is <day name>, <month name> <date>. Here are the available food trucks:
+  for ( i ; i < truckList.length ; i++ ) {
+    truckString += truckList[i].name + '\n';
+  }
 
-// list the food trucks returned by filterByDay, passing in the current day name.
-// e.g. filterByDay(day); where "day" is determined using the enhanced-date module
-// The list of trucks returned will be an array of food truck objects. Iterate 
-// through the list, building up a string of food truck names. Once you're done 
-// iterating through that list, display the string you built up.
+  response.writeHead( 200 , { 'Content-Type' : 'text/plain' } );
+  response.write( truckString );
+  response.end( '*** Keep on Truckin! ***' );
+}).listen( 3000 , function() {
 
-// Remember that the response is a stream object that must be closed.
+  console.log( 'listening on port 3000' );
+});
