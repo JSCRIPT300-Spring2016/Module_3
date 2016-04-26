@@ -1,14 +1,40 @@
+/*eslint-env node*/
 
-// make this a simple http server that writes to the response stream object
+//http and server
+var http = require('http');
 
-// the page should display the following message:
+//trucks
+var foodTrucks = require('./trucks');
 
-// Today is <day name>, <month name> <date>. Here are the available food trucks:
+//date
+var theDate = require('./enhanced-date');
+theDate.setDate();
 
-// list the food trucks returned by filterByDay, passing in the current day name.
-// e.g. filterByDay(day); where "day" is determined using the enhanced-date module
-// The list of trucks returned will be an array of food truck objects. Iterate 
-// through the list, building up a string of food truck names. Once you're done 
-// iterating through that list, display the string you built up.
+//server response and listen
+http.createServer(function (request, response) {
 
-// Remember that the response is a stream object that must be closed.
+    //the output
+  var outputString = 'Today is ' + theDate.getDayName() + ', '
+        + theDate.getDate('formatted') + '. The food trucks available are:\n';
+
+    //trucks that are open
+  var theTrucks = foodTrucks.filterByDay(theDate.getDayName());
+
+    //loop adding trucks
+  for (var i = 0; i < theTrucks.length; i++) {
+    outputString += '-' + theTrucks[i].name + '\n';
+  }
+
+    //write the response
+  response.write(outputString);
+
+    //finished
+  response.end();
+
+}).listen(3000, function () {
+
+    //log out that I'm listening
+    console.log('I am now listenting on port 3000'); //eslint-disable-line
+
+});
+

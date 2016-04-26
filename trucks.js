@@ -254,3 +254,13 @@ var foodTrucks = [
  * use the built-in filter() method to return all trucks that have the day in their
  * schedule
  */
+
+//returns a list of trucks open on a particular day
+function filterByDay(day) {
+    return foodTrucks.filter(function(truck) {
+        return truck.schedule.indexOf(day) !== -1;
+    })
+}
+
+//export
+module.exports.filterByDay = filterByDay
