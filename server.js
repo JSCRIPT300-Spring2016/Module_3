@@ -1,14 +1,18 @@
+'use strict';
 
-// make this a simple http server that writes to the response stream object
+var http = require('http');
+var myDateModule = require('./enhanced-date');
+var myTruckModule = require('./trucks');
 
-// the page should display the following message:
+var monthName = myDateModule.getMonthName();
+var dayName = myDateModule.getDayName();
+var dayNum = myDateModule.getDate({ format: 'formatted' });
 
-// Today is <day name>, <month name> <date>. Here are the available food trucks:
+var todaysTrucks = myTruckModule.filterByDay(dayName);
 
-// list the food trucks returned by filterByDay, passing in the current day name.
-// e.g. filterByDay(day); where "day" is determined using the enhanced-date module
-// The list of trucks returned will be an array of food truck objects. Iterate 
-// through the list, building up a string of food truck names. Once you're done 
-// iterating through that list, display the string you built up.
-
-// Remember that the response is a stream object that must be closed.
+http.createServer( function(request,response) {
+  response.writeHead(200, { 'Content-Type':'text/plain' });
+  response.write('Today is '+dayName+', '+monthName+' '+dayNum+
+    '. Here are the available food trucks: \n'+ todaysTrucks +'\n');
+  response.end();
+}).listen(3000);
