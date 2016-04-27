@@ -1,4 +1,6 @@
-// use the underscore module to filter the following data
+// use the underscore module to filter the following data (outdated)
+
+//Student: Katja Borchert
 
 var foodTrucks = [
   {
@@ -59,12 +61,14 @@ var foodTrucks = [
   {
     name: 'BeezNeez Gourmet Sausages',
     type: 'Hot Dogs',
-    schedule: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Tuesday', 'Wednesday', 'Thursday', 'Friday',
+	'Saturday', 'Sunday']
   },
   {
     name: 'Beloved Mexico',
     type: 'Mexican',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
+	'Friday', 'Saturday', 'Sunday']
   },
   {
     name: 'Ben & Jerry\'s',
@@ -79,7 +83,8 @@ var foodTrucks = [
   {
     name: 'Big Dog\'s',
     type: 'Hot Dogs',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
+	'Friday', 'Saturday', 'Sunday']
   },
   {
     name: 'Big Ed\'s Good Eats',
@@ -234,7 +239,9 @@ var foodTrucks = [
   {
     name: 'Dog Japon',
     type: 'Hot Dogs',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday',
+	'Friday',
+	'Saturday', 'Sunday']
   },
   {
     name: 'Dogfather Catering',
@@ -248,9 +255,28 @@ var foodTrucks = [
   }
 ];
 
-/* 
- * return an object from the module with a single method on it: filterByDay
- * that method should take a single parameter that represents the day to filter on
- * use the built-in filter() method to return all trucks that have the day in their
- * schedule
- */
+//function returns true if the currently checked truck is available
+//on the target day
+function filterBySchedule(truck, day) {
+  if (truck.schedule.indexOf(day) !== -1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+ 
+//filters a list of trucks by their schedule and returns an array of trucks
+//that are available on a certain day
+var filterTrucksByDay = function(day){
+  var filteredTruckArray = foodTrucks.filter(function(truck){
+    return filterBySchedule(truck, day);
+  });
+  var availableFoodTrucks = [];
+  for (var i = 0; i < filteredTruckArray.length; i+=1){
+    availableFoodTrucks.push(filteredTruckArray[i].name);
+  }
+  
+  return availableFoodTrucks;
+};
+ 
+module.exports.filterTrucksByDay = filterTrucksByDay;
