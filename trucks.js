@@ -261,7 +261,7 @@ var trucks = (function(){
     else
       return false;
   }
-  function filterByDay(day){
+  function filterTrucksByDay(day){
     if(day !== null){
       trucks = foodTrucks.filter(function(truck){
         return getTruckByDay(truck,day);
@@ -276,7 +276,7 @@ var trucks = (function(){
   }
 
   return {
-    filterByDay : filterByDay
+    filterTrucksByDay : filterTrucksByDay
   };
 
 })();

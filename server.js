@@ -16,13 +16,14 @@
 var http = require('http');
 var dateObj = require('./enhanced-date');
 var trucks = require('./trucks');
-var truckList = trucks.filterByDay(dateObj.getDayName());
-
+var truckList = trucks.filterTrucksByDay(dateObj.getDayName());
+var date = new Date(dateObj.getDate({format : 'milliseconds'})).getDate();
 
 http.createServer(function (request, response){
   response.writeHead(200, { 'Content-Type': 'text/plain' });
-  response.write(dateObj.getDate({ format : 'formatted' })
-		+'. The food trucks available are:' + '\n' + truckList);
+  response.write('Today is ' + dateObj.getDayName() + ',' +
+  dateObj.getMonthName() + ' ' +
+  date+'. The food trucks available are:' + '\n' + truckList);
   response.end();
 }).listen(3000, function(){
   console.log('Listening on port 3000');
