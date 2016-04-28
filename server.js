@@ -20,10 +20,12 @@ http.createServer(function (request, response) {
   var dateObj = require('./enhanced-date');
   var trucks = require('./trucks');
   
-  var day = dateObj.getDayName();
-  var truckString = 'Today is ' + day + ' ' +
-    dateObj.getDate({ format: 'formatted' }) +
-    '.\n' + 'The trucks available are: \n\n';
+  var day = dateObj.getDayName(); 
+  //find a way to extract the month and date from dateObj.getDate({ format: 'formatted' })
+  //Since it contains a ',' the string can easily be split into 2 substrings
+  var dateString = dateObj.getDate({ format: 'formatted' }).split(',');
+  var truckString = 'Today is ' + day + ', ' +
+    dateString[0] + '. ' + 'The food trucks available are : \n\n';
   var truckArray = trucks.filterTrucksByDay(day);
 
   //loops through the array of available trucks and assembles
