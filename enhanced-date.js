@@ -24,9 +24,9 @@ var dateObj = (function() {
     if(!privateDate)
       initDate();
     if(typeof options === 'undefined' || options.format === 'milliseconds')
-      return 'Today\'s date is ' + privateDate.getTime();
+      return privateDate.getTime();
     else if(options.format === 'formatted')
-      return 'Today\'s date is ' + getMonthName() + ' ' + privateDate.getDate() +','
+      return getMonthName() + ' ' + privateDate.getDate() +','
       + privateDate.getFullYear();
   }
 
