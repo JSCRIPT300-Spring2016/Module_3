@@ -19,16 +19,20 @@ var trucks = require('trucks.js');
 //request refers to your http request. the response is what is sent back
 http.createServer(function(request, response){
 
-	//both request and response have headers, which is just a place that contains info about them.
-	//200 refers to status code
-	response.writeHead(200, { 'Content-Type': 'text/plain' });
-	//write something into the response
-	response.write('Today is' + getDate() + '. Here are the available food trucks:');
+  //both request and response have headers, which is just a place that contains info about them.
+  //200 refers to status code
+  response.writeHead(200, { 'Content-Type': 'text/plain' });
+  //write something into the response
 
-	//end the response
-	response.end('Goodbye, class!');
-	//first parameter of listen is the port that the server is listening on
-	//as soon as it starts listening it will call this function (second parameter)
+
+  var truckString = 'Today is ';
+  truckString += trucks[i].name + '\n';
+  response.write('. Here are the available food trucks:');
+
+  //end the response
+  response.end();
+  //first parameter of listen is the port that the server is listening on
+  //as soon as it starts listening it will call this function (second parameter)
 }).listen(3000, function() {
-	console.log('listening on port 3000');
+  console.log('listening on port 3000');
 });
