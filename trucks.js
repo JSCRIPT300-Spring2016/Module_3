@@ -1,4 +1,5 @@
 // use the underscore module to filter the following data
+var trucks = function (trucks){
 
 var foodTrucks = [
   {
@@ -247,6 +248,23 @@ var foodTrucks = [
     schedule: []
   }
 ];
+
+};
+
+var filterTrucksByDay = function (day) {
+  var day = myObj.getDayName();
+  var truckArray = trucks.filterByDay(day);
+  for (schedule in foodTrucks) {
+    if (schedule[day] ){
+      return truckArray;
+    }
+  }
+  
+};
+
+module.exports = trucks;
+module.exports = filterTrucksByDay;
+
 
 /* 
  * return an object from the module with a single method on it: filterByDay
