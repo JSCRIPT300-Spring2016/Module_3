@@ -247,8 +247,26 @@ var foodTrucks = [
     schedule: []
   }
 ];
+//I know we are supposed to use filter but I am a little lost on that
+var filterByDay = function(day) {
+  var openTrucks = [];
+  for(var i=0; i<foodTrucks.length; i++) {
+    for(var j=0; j<foodTrucks[i].schedule.length; j++) {
+        if (foodTrucks[i].schedule[j] === day) {
+          openTrucks.push(foodTrucks[i].name);
+        }
+    }
+  }
+  return openTrucks;
+}
 
-/* 
+var truckInformation = {
+  foodTrucks: foodTrucks,
+  filterByDay: filterByDay
+}
+
+module.exports = truckInformation;
+/*
  * return an object from the module with a single method on it: filterByDay
  * that method should take a single parameter that represents the day to filter on
  * use the built-in filter() method to return all trucks that have the day in their
