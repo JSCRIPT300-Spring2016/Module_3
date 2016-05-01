@@ -20,7 +20,7 @@
       currentModuleDate = instantiateDate();
     }
     if (requestedFormat.format === 'formatted') {
-      return currentModuleDate.getMonth() + ' ' + currentModuleDate.getDate() +
+      return getMonthName() + ' ' + currentModuleDate.getDate() +
       ', ' + currentModuleDate.getFullYear();
     }
     else if (requestedFormat.format==='milliseconds' ||
