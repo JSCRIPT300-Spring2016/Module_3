@@ -3,7 +3,7 @@ var dateObj = require('./enhanced-date');
 var trucks = require('./trucks');
 
 http.createServer(function (request, response){
-  today = new Date();
+  var today = new Date();
   var date = today.getDate();
   dateObj.setDate(today);
   var dayName = dateObj.getDayName();

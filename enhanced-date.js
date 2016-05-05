@@ -1,5 +1,6 @@
-'use strict';
+
 var dateObj = (function (){
+  'use strict';
   var _date = null;
   var DAYS =
     ['Sunday',
@@ -113,4 +114,3 @@ var dateObj = (function (){
     isToday: isToday
   };
 });
-dateObj;
