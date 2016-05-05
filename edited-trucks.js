@@ -1,3 +1,5 @@
+// use the underscore module to filter the following data
+
 var foodTrucks = [
   {
     name: '314 PIE',
@@ -249,26 +251,19 @@ var foodTrucks = [
     schedule: []
   }
 ];
-//I know we are supposed to use filter but I am a little lost on that
-var filterByDay = function(day) {
-  var openTrucks = [];
-  for(var i=0; i<foodTrucks.length; i++) {
-    for(var j=0; j<foodTrucks[i].schedule.length; j++) {
-      if (foodTrucks[i].schedule[j] === day) {
-        openTrucks.push(foodTrucks[i].name);
-      }
-    }
-  }
 
-  return openTrucks;
+function filterTrucksByDay(day) {
+  //day = day[0].toUpperCase() + day.slice(1).toLowerCase();
+
+  var filteredList = foodTrucks.filter(function (truck) {
+    return truck.schedule.indexOf(day) !== -1;
+  });
+
+  return filteredList;
+}
+module.exports = {
+filterTrucksByDay: filterTrucksByDay
 };
-
-var truckInformation = {
-  foodTrucks: foodTrucks,
-  filterByDay: filterByDay
-};
-
-module.exports = truckInformation;
 /*
  * return an object from the module with a single
  *method on it: filterByDay
