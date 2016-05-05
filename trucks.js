@@ -1,3 +1,5 @@
+'use strict';
+
 var foodTrucks = [
   {
     name: '314 PIE',
@@ -57,12 +59,14 @@ var foodTrucks = [
   {
     name: 'BeezNeez Gourmet Sausages',
     type: 'Hot Dogs',
-    schedule: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Tuesday', 'Wednesday', 'Thursday', 'Friday',
+      'Saturday', 'Sunday']
   },
   {
     name: 'Beloved Mexico',
     type: 'Mexican',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+      'Saturday', 'Sunday']
   },
   {
     name: 'Ben & Jerry\'s',
@@ -77,7 +81,8 @@ var foodTrucks = [
   {
     name: 'Big Dog\'s',
     type: 'Hot Dogs',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+      'Saturday', 'Sunday']
   },
   {
     name: 'Big Ed\'s Good Eats',
@@ -232,7 +237,8 @@ var foodTrucks = [
   {
     name: 'Dog Japon',
     type: 'Hot Dogs',
-    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    schedule: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+      'Saturday', 'Sunday']
   },
   {
     name: 'Dogfather Catering',
@@ -246,9 +252,47 @@ var foodTrucks = [
   }
 ];
 
-/* 
+var trucks = (function(){
+  var truckName = '';
+  var trucks = [];
+
+  function getTruckByDay( truck, day ){
+    if (truck.schedule.indexOf(day) !== -1){
+      return true;
+    } else {
+      return false;
+    }}
+
+  function filterTrucksByDay( day ){
+    if( day !== null ){
+      trucks = foodTrucks.filter(function( truck ){
+        return getTruckByDay( truck, day );
+      });
+
+      for( var x=0; x<trucks.length; x++ ){
+        truckName = truckName + trucks[x].name + '\n';
+      }
+    }
+
+    return truckName;
+  }
+
+  return{
+    filterTrucksByDay : filterTrucksByDay
+  };
+
+})();
+
+module.exports = trucks;
+
+/*
  * return an object from the module with a single method on it: filterByDay
- * that method should take a single parameter that represents the day to filter on
- * use the built-in filter() method to return all trucks that have the day in their
+ * that method should take a single
+ parameter that represents the day to filter on
+ * use the built-in filter() method to
+ return all trucks that have the day in their
  * schedule
+ * The filter() method creates a new array
+ with all elements that pass the test implemented by the provided function.
+ * arr.filter(callback[, thisArg])
  */
