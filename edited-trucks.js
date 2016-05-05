@@ -251,19 +251,7 @@ var foodTrucks = [
     schedule: []
   }
 ];
-//I know we are supposed to use filter but I am a little lost on that
-var filterByDay = function(day) {
-  var openTrucks = [];
-  for(var i=0; i<foodTrucks.length; i++) {
-    for(var j=0; j<foodTrucks[i].schedule.length; j++) {
-      if (foodTrucks[i].schedule[j] === day) {
-        openTrucks.push(foodTrucks[i].name);
-      }
-    }
-  }
 
-  return openTrucks;
-};
 function filterTrucksByDay(day) {
   //day = day[0].toUpperCase() + day.slice(1).toLowerCase();
 
