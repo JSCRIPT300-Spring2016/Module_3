@@ -1,5 +1,5 @@
 
-var dateObj = (function (){
+function (){
   'use strict';
   var _date = null;
   var DAYS =
@@ -113,4 +113,4 @@ var dateObj = (function (){
     isFuture: isFuture,
     isToday: isToday
   };
-});
+};
