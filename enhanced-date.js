@@ -1,5 +1,3 @@
-
-function (){
   'use strict';
   var _date = null;
   var DAYS =
@@ -113,4 +111,3 @@ function (){
     isFuture: isFuture,
     isToday: isToday
   };
-};
