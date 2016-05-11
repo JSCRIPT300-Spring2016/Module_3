@@ -1,7 +1,4 @@
-// export this as a Node module using the code from Module_2
-var enhancedDate = function (enhancedDate) {
-
-  var myDate = null;
+var myDate = null;
   var DAYS = [
     'Sunday',
     'Monday',
@@ -32,7 +29,7 @@ var enhancedDate = function (enhancedDate) {
   }
   function setDate( date ) {
     if (typeof date === 'number' || date instanceof Date) {
-      date = new Date(date);
+      myDate = new Date(date);
     } else if (typeof date === 'undefined') {
       _initializeMyDate();
     }
@@ -53,7 +50,7 @@ var enhancedDate = function (enhancedDate) {
     } else if (formatObj && formatObj.format === 'formatted'){
       month = getMonthName();
       date = myDate.getDate();
-      year = myDate.getFullYear;
+      year = myDate.getFullYear();
 
       return month + ' ' + date + ', ' + year;
     }
@@ -79,7 +76,7 @@ var enhancedDate = function (enhancedDate) {
     }
 
     monthIndex = myDate.getMonth();
- 	
+
     return MONTHS[monthIndex];
   }
 
@@ -96,6 +93,7 @@ var enhancedDate = function (enhancedDate) {
     date = myDate.getDate();
     month = myDate.getMonth();
     year = myDate.getYear();
+    now = new Date();
 
     return date === now.getDate() && month === now.getMonth()
       && year === now.getYear();
@@ -109,11 +107,16 @@ var enhancedDate = function (enhancedDate) {
       _initializeMyDate();
     }
 
-     return myDate.getTime() > now.getTime();
+    now = new Date();
+
+    return myDate.getTime() > now.getTime();
   }
 
-};
-
-module.exports = enhancedDate;
-
-
+  module.exports = {
+    setDate: setDate,
+    getDate: getDate,
+    getDayName: getDayName,
+    getMonthName: getMonthName,
+    isToday: isToday,
+    isFuture: isFuture
+  };
