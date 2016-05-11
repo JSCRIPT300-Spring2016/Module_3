@@ -12,3 +12,20 @@
 // iterating through that list, display the string you built up.
 
 // Remember that the response is a stream object that must be closed.
+
+
+var express = require('express');
+var DateObj = require('./enhanced-date');
+
+var app = express();
+
+
+app.get('/', function (request, response)
+{
+	var trucks = 'Today is ' + DateObj.getDayName();
+    response.send(trucks);
+});
+
+app.listen(3000, function () {
+    console.log('server started on port 3000');
+});

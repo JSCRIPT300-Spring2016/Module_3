@@ -4,10 +4,8 @@
  * Expose `dateObj`.
  */
 
-module.exports = dateObj;
-
 var dateObj = ( function(a) {
-  var currentDate;
+  var currentDate = new Date();
 
   function setDate(a) {
 
@@ -22,7 +20,9 @@ var dateObj = ( function(a) {
 
   function getDate(f) {
     if (arguments.length === 0){
-      return currentDate.getTime();
+      var internallyStoredDate = new Date();
+
+      return internallyStoredDate.getTime();
     }
 
     var format = f.format;
@@ -60,7 +60,7 @@ var dateObj = ( function(a) {
         (candidate.getDay() === currentDate.getDay()));
   }
 
-    return {
+  return {
     setDate: setDate,
     getDate: getDate,
     getDayName: getDayName,
@@ -70,3 +70,5 @@ var dateObj = ( function(a) {
     isToday: isToday
   };
 })();
+
+module.exports = dateObj;

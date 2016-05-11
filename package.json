@@ -1,0 +1,23 @@
+{
+  "name": "module_3",
+  "version": "1.0.0",
+  "description": "Week 3",
+  "main": "enhanced-date.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasong-peakbagger/Module_3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasong-peakbagger/Module_3/issues"
+  },
+  "homepage": "https://github.com/jasong-peakbagger/Module_3#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
