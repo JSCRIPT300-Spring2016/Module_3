@@ -40,6 +40,13 @@ var dateObj = ( function(a) {
     return currentDate.toLocaleDateString('en-US', {weekday: 'long'});
   }
 
+  function getExactDay() {
+    var dateString = currentDate.toLocaleDateString();
+    var exactNumericDay = dateString.slice(7,10);
+
+    return exactNumericDay;
+  }
+
   function getMonthName() {
     return currentDate.toLocaleDateString('en-US', {month: 'long'});
   }
@@ -64,6 +71,7 @@ var dateObj = ( function(a) {
     setDate: setDate,
     getDate: getDate,
     getDayName: getDayName,
+    getExactDay: getExactDay,
     getMonthName: getMonthName,
     isFuture: isFuture,
     getYear: getYear,
