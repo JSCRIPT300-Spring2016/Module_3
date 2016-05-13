@@ -270,7 +270,7 @@ var foodTrucks = [
   }
 ];
 function filterTrucksByDay(day){
-  day = day[0].toUpperCase() + day.slice[1].toLowerCase();
+  day = day[0].toUpperCase() + day.slice(1).toLowerCase();
     
   var filteredList = foodTrucks.filter(function(truck){
     return truck.schedule.indexOf(day) !== -1;
